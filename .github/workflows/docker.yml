@@ -28,7 +28,6 @@ jobs:
             type=edge
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-            type=sha
           labels: |
             org.label-schema.vcs-url=https://github.com/${{ github.repository }}.git
             org.label-schema.schema-version=1.0.0-rc1
@@ -52,7 +51,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
-          push: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          # push: ${{ startsWith(github.ref, 'refs/tags/v') }}
           file: Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
